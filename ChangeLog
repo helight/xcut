@@ -1,0 +1,12 @@
+# 
+# ChangeLog for lcut
+#
+
+2010-12-25 Helight Xu <Helight.Xu@gmail.com>
+  * Create new version tag xcut-0.0.1 
+
+2010-10-29 Tony Bai <bigwhite.cn@gmail.com>
+  * Add mock support
+
+2010-09-25 Tony Bai <bigwhite.cn@gmail.com>
+  * Version 0.1.0 released
