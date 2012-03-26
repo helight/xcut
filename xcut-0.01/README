@@ -1,2 +1,5 @@
 ==Intro==
 	xcut is an unint test framework for c program wrote by helightxu
+==make==
+	./configure
+	make
