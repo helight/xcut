@@ -82,5 +82,7 @@ int main() {
     hash_free(htable);
 
     LCUT_TEST_RESULT();
+	
+	return 0;
 }
 
