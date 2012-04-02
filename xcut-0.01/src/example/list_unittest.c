@@ -105,10 +105,10 @@ void tc_del_list(lcut_tc_t *tc, void *data) {
 
 int main(int argc, char **argv)
 {
-    lcut_ts_t   *suite = NULL;
+    //lcut_ts_t   *suite = NULL;
     LCUT_TEST_BEGIN("List unit test", NULL, NULL);
     
-    LCUT_TS_INIT(suite, "list unit test suite", NULL, NULL);
+    XCUT_TS_INIT(suite, "list unit test suite", NULL, NULL);
     LCUT_TC_ADD(suite, "Init list case", tc_init_list, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "add and show list case", tc_add_show_list, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "del list case", tc_del_list, NULL, NULL, NULL);
@@ -116,10 +116,5 @@ int main(int argc, char **argv)
     LCUT_TC_ADD(suite, "del list case2", tc_del_list, NULL, NULL, NULL);
 
     LCUT_TS_ADD(suite);
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-    LCUT_TEST_RESULT();
-    
-    return 0;
+    XCUT_TEST_RUN();
 }

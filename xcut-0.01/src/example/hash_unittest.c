@@ -61,25 +61,26 @@ void tc_change_node(lcut_tc_t *tc, void *data) {
     LCUT_STR_EQ(tc, "helightxu", ((struct hnode *)hash_get(htable, key[3]))->value);
 }
 
-int main() {
-    lcut_ts_t   *suite = NULL;
-    LCUT_TEST_BEGIN("a simple calculator test", NULL, NULL);
-
+void setup()
+{
     htable = create_hasht(5, 7, NULL, cmp);
+}
 
-    LCUT_TS_INIT(suite, "hashtable unit test suite", NULL, NULL);
+void teardown()
+{
+    hash_free(htable);
+}
+
+int main() {
+    LCUT_TEST_BEGIN("a simple calculator test", setup, teardown);
+
+    XCUT_TS_INIT(suite, "hashtable unit test suite", NULL, NULL);
     LCUT_TC_ADD(suite, "Init hashtable case", tc_init_hashtable, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "add node to hashtable", tc_add_node, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "del node from hashtable", tc_del_node, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "del node from hashtable", tc_change_node, NULL, NULL, NULL);
-    LCUT_TS_ADD(suite);
-
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-
-    hash_free(htable);
-
-    LCUT_TEST_RESULT();
+	
+	LCUT_TS_ADD(suite);
+    XCUT_TEST_RUN();
 }
 

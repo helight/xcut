@@ -24,16 +24,11 @@ void tc_null_test(lcut_tc_t *tc, void *data) {
 }
 
 int main() {
-    lcut_ts_t   *suite = NULL;
     LCUT_TEST_BEGIN("a null test", NULL, NULL);
 
-    LCUT_TS_INIT(suite, "a null test suite", NULL, NULL);
+    XCUT_TS_INIT(suite, "a null test suite", NULL, NULL);
     LCUT_TC_ADD(suite, "null test", tc_null_test, NULL, NULL, NULL);
     LCUT_TS_ADD(suite);
 
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-
-    LCUT_TEST_RESULT();
+    XCUT_TEST_RUN();
 }

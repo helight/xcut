@@ -43,19 +43,12 @@ void tc_nstr(lcut_tc_t *tc, void *data) {
 }
 
 int main() {
-    lcut_ts_t   *suite = NULL;
     LCUT_TEST_BEGIN("a simple str test", NULL, NULL);
 
-    LCUT_TS_INIT(suite, "a simple str unit test suite", NULL, NULL);
+    XCUT_TS_INIT(suite, "a simple str unit test suite", NULL, NULL);
     LCUT_TC_ADD(suite, "str test case", tc_str, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "strn test case", tc_nstr, NULL, NULL, NULL);
-    LCUT_TS_ADD(suite);
 
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-
-    LCUT_TEST_RESULT();
-
-   return 0;
+	LCUT_TS_ADD(suite);
+    XCUT_TEST_RUN();
 }

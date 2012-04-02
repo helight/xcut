@@ -154,11 +154,9 @@ void lcut_test_report(lcut_test_t *test);
         exit(1); \
     }
 
-#define LCUT_TEST_END() do { \
-        lcut_test_destroy(&_cut_test); \
-        exit(_cut_result); \
-    } while(0)
-
+#define XCUT_TS_INIT(p, s, setup, teardown) \
+        lcut_ts_t   *x##p = NULL; \
+        LCUT_TS_INIT(x##p, s, setup, teardown) 
 /*
  * initialize a Test Suite
  *
@@ -183,7 +181,7 @@ void lcut_test_report(lcut_test_t *test);
  * which has already been added into a logical test!
  */
 #define LCUT_TS_ADD(p) do { \
-        lcut_ts_add(_cut_test, (p)); \
+        lcut_ts_add(_cut_test, (x##p)); \
     } while(0)
 
 /*
@@ -195,7 +193,7 @@ void lcut_test_report(lcut_test_t *test);
  * e -- extra parameter
  */
 #define LCUT_TC_ADD(p, s, f, e, before, after) do { \
-        if ((_cut_status = lcut_tc_add((p), (s), (f), (e), (before), (after))) != 0) { \
+        if ((_cut_status = lcut_tc_add((x##p), (s), (f), (e), (before), (after))) != 0) { \
             printf("[LCUT]: test case add failed!, errcode[%d]\n", _cut_status); \
             exit(1); \
         } \
@@ -204,15 +202,11 @@ void lcut_test_report(lcut_test_t *test);
 /*
  * Run a logical unit test
  */
-#define LCUT_TEST_RUN() do { \
+#define XCUT_TEST_RUN() do { \
         lcut_test_run(_cut_test, &_cut_result); \
-    } while(0)
-
-/*
- * Report the result of the logical test
- */
-#define LCUT_TEST_REPORT() do { \
         lcut_test_report(_cut_test); \
+        lcut_test_destroy(&_cut_test); \
+	    return _cut_result;\
     } while(0)
 
 /*
@@ -239,8 +233,12 @@ int lcut_assert(lcut_tc_t *tc, const char *msg, int condition,
                  int lineno, const char *fcname, const char *fname);
 
 #define LCUT_INT_EQ(tc, expected, actual) do { \
-        xcut_int_assert(tc, (expected) == (actual),  __LINE__,\
-        "LCUT_INT_EQ", __FILE__, expected, actual); \
+        if ((expected) == (actual)) \
+            xcut_int_assert(tc, 1,  __LINE__,\
+            "LCUT_INT_EQ", __FILE__, expected, actual); \
+        else \
+            xcut_int_assert(tc, 0,  __LINE__,\
+            "LCUT_INT_EQ", __FILE__, expected, actual); \
     } while(0)
 
 #define LCUT_INT_NE(tc, expected, actual) do { \

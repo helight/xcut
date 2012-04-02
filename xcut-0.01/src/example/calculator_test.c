@@ -51,19 +51,14 @@ void tc_divide(lcut_tc_t *tc, void *data) {
 }
 
 int main() {
-    lcut_ts_t   *suite = NULL;
     LCUT_TEST_BEGIN("a simple calculator test", NULL, NULL);
 
-    LCUT_TS_INIT(suite, "a simple calculator unit test suite", NULL, NULL);
+    XCUT_TS_INIT(suite, "a simple calculator unit test suite", NULL, NULL);
     LCUT_TC_ADD(suite, "add test case", tc_add, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "subtract test case", tc_subtract, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "multiply test case", tc_multiply, NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "divide test case", tc_divide, NULL, NULL, NULL);
-    LCUT_TS_ADD(suite);
 
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-
-    LCUT_TEST_RESULT();
+	LCUT_TS_ADD(suite);
+    XCUT_TEST_RUN();
 }

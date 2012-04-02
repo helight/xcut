@@ -59,25 +59,15 @@ void tc_get_total_count_of_employee_fetch_rowcount_failed(lcut_tc_t *tc, void *d
 }
 
 int main() {
-    lcut_ts_t   *suite = NULL;
-
     LCUT_TEST_BEGIN("product database test", NULL, NULL);
 
-    LCUT_TS_INIT(suite, "product database unit test - normal result suite", NULL, NULL);
+    XCUT_TS_INIT(suite, "product database unit test - normal result suite", NULL, NULL);
     LCUT_TC_ADD(suite, "get total count of employees ok!", tc_get_total_count_of_employee_ok, NULL, NULL, NULL);
-    LCUT_TS_ADD(suite);
 
-    suite = NULL;
-    LCUT_TS_INIT(suite, "product database unit test - exceptional result suite", NULL, NULL);
     LCUT_TC_ADD(suite, "tc when database conn failed", tc_get_total_count_of_employee_db_conn_failed, 
                 NULL, NULL, NULL);
     LCUT_TC_ADD(suite, "tc when fetch row counts failed", tc_get_total_count_of_employee_fetch_rowcount_failed, 
                 NULL, NULL, NULL);
-    LCUT_TS_ADD(suite);
 
-    LCUT_TEST_RUN();
-    LCUT_TEST_REPORT();
-    LCUT_TEST_END();
-
-    LCUT_TEST_RESULT();
+    XCUT_TEST_RUN();
 }
