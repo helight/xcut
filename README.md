@@ -3,7 +3,7 @@
 xcut is a C Unit Test framework maintained by HelightXu. xcut is another branch of lcut and more feature then lcut!
 
 ###demo:###
-
+```c++
     #include "xcut.h"
       
     /*
@@ -27,7 +27,7 @@ xcut is a C Unit Test framework maintained by HelightXu. xcut is another branch 
     
         LCUT_TEST_RESULT();
     }
-
+```
 ####run result:####
 
     ==================================================
