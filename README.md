@@ -29,7 +29,7 @@ xcut is a C Unit Test framework maintained by HelightXu. xcut is another branch 
     }
 ```
 ####run result:####
-
+```
     ==================================================
             a null test 
     ==================================================
@@ -45,3 +45,4 @@ xcut is a C Unit Test framework maintained by HelightXu. xcut is another branch 
     
     ==================================================
                      GREEN BAR!  
+```
