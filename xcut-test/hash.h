@@ -9,6 +9,7 @@ struct hnode{
         void *value;
         struct hnode *next;
 };
+
 //the head of hash table
 struct hash_t{
 	unsigned int tsize;	//length of the hash table
